@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мастер-класс: Компоновка гамбургер-меню (Flexbox)</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .nav-header {
+            background-color: #4facfe;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hamburger-button {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            outline: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .line {
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .hamburger-button.open .line1 {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger-button.open .line2 {
+            opacity: 0;
+        }
+
+        .hamburger-button.open .line3 {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .slide-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #fdfdfd;
+            overflow-x: hidden;
+            transition: width 0.5s ease-in-out;
+            padding-top: 60px;
+            color: #2c3e50;
+            display: flex; /* Используем Flexbox для меню */
+            flex-direction: column; /* Пункты меню располагаем вертикально */
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide-menu a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #2c3e50;
+            display: block;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .slide-menu a:hover {
+            background-color: #ecf0f1;
+        }
+
+        .slide-menu .close-button {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #2c3e50;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .slide-menu .close-button:hover {
+            opacity: 1;
+        }
+
+        .menu-header {
+            padding: 20px;
+            font-weight: bold;
+            color: #7f8c8d;
+            border-bottom: 1px solid #bdc3c7;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+    font-family: sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            border-right: 1px solid #ccc;
+            padding: 15px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .sidebar li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 15px;
+        }
+
+        #info-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div class="nav-header">
+        <button class="hamburger-button" onclick="toggleNav(this)">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+        </button>
+        <span>Информация</span>
+    </div>
+
+    <div id="slideNav" class="slide-menu">
+        <a href="javascript:void(0)" class="close-button" onclick="toggleNav(document.querySelector('.hamburger-button'))">&times;</a>
+        <div class="menu-header">Навигация</div>
+        <a href="file:///D:/HTML/%D0%90%D1%81%D0%BD%D0%B0%D0%B2%D0%BD%D0%BE%D0%B9.html">Главная</a>
+        <a href="file:///D:/HTML/%D0%9E%20%D0%BD%D0%B0%D1%81.htmll">О нас</a>
+        <a href="file:///D:/HTML/%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%D0%B0.html">Информатика</a>
+        <a href="file:///D:/HTML/%D0%A3%D1%81%D0%BB%D1%83%D0%B3%D0%B8.html">Услуги</a>
+        <div class="menu-header">Дополнительно</div>
+        <a href="file:///D:/HTML/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8.html">Настройки</a>
+    </div>
+
+    <div class="content">
+        <h1>Услуги!</h1>
+      <p>Услуги — это действия, выгода или удовлетворение, которые одна сторона может предложить другой и которые по своей сути являются неосязаемыми и не приводят к владению чем-либо.</p>
+          <div style="border-top: 1px solid #e74c3c"</div>
+        <img src="Foop.png" width="340" height="300" title="Знание !">
+      <h2> Услуги Знание</h2>
+      <p>1. Образование и обучение:</p>
+      <ul>
+        <li> Школьное образование (начальное, среднее, старшее) </li>
+        <li> Высшее образование (бакалавриат, магистратура, аспирантура) </li>
+        <li>Профессиональное обучение и переподготовка</li>
+        <li>Корпоративное обучение</li>
+        <li>Репетиторство и индивидуальные занятия</li>
+        <li>Онлайн-курсы и вебинары</li>
+      </ul>
+      <p>2. Консалтинг</p>
+      <ul>
+        <li>Управленческий консалтинг (стратегическое планирование, организационное развитие)</li>
+        <li>Финансовый консалтинг (инвестиции, налоговое планирование)</li>
+        <li>Маркетинговый консалтинг (исследование рынка, разработка стратегий продвижения)</li>
+        <li>IT-консалтинг (разработка программного обеспечения, кибербезопасность)</li>
+        <li>Юридический консалтинг</li>
+      </ul>
+      <img src="Fooa.png" width="340" height="370" title="Знание !">
+      <p>3. Информационные технологии (IT):</p>
+      <ul>
+        <li>Разработка программного обеспечения</li>
+        <li>Веб-разработка и дизайн</li>
+        <li>Анализ данных и бизнес-аналитика</li>
+        <li>Разработка новых продуктов и технологий</li>
+        <li>Библиотечное обслуживание и архивы</li>
+      </ul>
+    </div>  
+    <script>
+        function toggleNav(button) {
+            const nav = document.getElementById("slideNav");
+            button.classList.toggle("open");
+            nav.style.width = button.classList.contains("open") ? "250px" : "0";
+        }
+    </script>
+</body>
+</hyml>

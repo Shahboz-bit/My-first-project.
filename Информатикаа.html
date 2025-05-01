@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мастер-класс: Компоновка гамбургер-меню (Flexbox)</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .nav-header {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hamburger-button {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            outline: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .line {
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .hamburger-button.open .line1 {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger-button.open .line2 {
+            opacity: 0;
+        }
+
+        .hamburger-button.open .line3 {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .slide-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #fdfdfd;
+            overflow-x: hidden;
+            transition: width 0.5s ease-in-out;
+            padding-top: 60px;
+            color: #2c3e50;
+            display: flex; /* Используем Flexbox для меню */
+            flex-direction: column; /* Пункты меню располагаем вертикально */
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide-menu a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #2c3e50;
+            display: block;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .slide-menu a:hover {
+            background-color: #ecf0f1;
+        }
+
+        .slide-menu .close-button {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #2c3e50;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .slide-menu .close-button:hover {
+            opacity: 1;
+        }
+
+        .menu-header {
+            padding: 20px;
+            font-weight: bold;
+            color: #7f8c8d;
+            border-bottom: 1px solid #bdc3c7;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+    font-family: sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            border-right: 1px solid #ccc;
+            padding: 15px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .sidebar li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 15px;
+        }
+
+        #info-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div class="nav-header">
+        <button class="hamburger-button" onclick="toggleNav(this)">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+        </button>
+        <span>Информация</span>
+    </div>
+
+    <div id="slideNav" class="slide-menu">
+        <a href="javascript:void(0)" class="close-button" onclick="toggleNav(document.querySelector('.hamburger-button'))">&times;</a>
+        <div class="menu-header">Навигация</div>
+        <a href="file:///D:/HTML/%D0%90%D1%81%D0%BD%D0%B0%D0%B2%D0%BD%D0%BE%D0%B9.html">Главная</a>
+        <a href="file:///D:/HTML/%D0%9E%20%D0%BD%D0%B0%D1%81.htmll">О нас</a>
+        <a href="file:///D:/HTML/%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%D0%B0.html">Информатика</a>
+        <a href="file:///D:/HTML/%D0%A3%D1%81%D0%BB%D1%83%D0%B3%D0%B8.html">Услуги</a>
+        <div class="menu-header">Дополнительно</div>
+        <a href="file:///D:/HTML/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8.html">Настройки</a>
+    </div>
+
+    <div class="content">
+        <h1>Информатика!</h1>
+        <p>Информатика — наука об обработке, хранении и передаче информации с использованием компьютеров и вычислительных систем</p>
+         <div style="border-top: 1px solid #e74c3c"</div>
+        <img src="Fooo.png" width="340" height="300" title="Знание !">
+        <div style="border-top: 1px solid #e74c3c"</div>
+        <div class="sidebar">
+        <h2>Основные части компьютера</h2>
+            <div style="border-top: 1px solid #e74c3c"</div>
+        <ol>
+            <li data-topic="topic1">Монитор</li>
+            <li data-topic="topic2">Клавиатура</li>
+            <li data-topic="topic3">Мышка</li>
+            <li data-topic="topic4">Блок-система</li>
+        </ol>
+    </div>
+
+    <div class="content">
+        <h1>Информация</h1>
+        <div id="info-container">
+            <p>Выберите тему слева для отображения информации.</p>
+        </div>
+    </div>
+
+    <script>
+        // Здесь будет JavaScript код для обработки кликов и обновления информации
+        const listItems = document.querySelectorAll('.sidebar li');
+        const infoContainer = document.getElementById('info-container');
+
+        const topicData = {
+            topic1: "<b>Монитор</b> — устройство вывода, которое отображает информацию в графической или текстовой форме. Он является одним из основных компонентов компьютера и используется для просмотра веб-страниц, видео, игры, работы с документами и других задач. ",
+            topic2: "<b>Клавиатура</b> — это устройство, с помощью которого вводят текст и команды в компьютер, планшет или телефон. Она состоит из множества кнопок, называемых клавишами. Каждая клавиша отвечает за свою букву, цифру или действие. ",
+            topic3: "<b>Компьютерная мышь</b> — механический манипулятор для ручного управления перемещением курсора на экране компьютера. Преобразует движение руки пользователя в управляющий сигнал. ",
+            topic4: "<b>Системный блок компьютера</b> — корпус, внутри которого установлены все необходимые и дополнительные комплектующие для создания персонального компьютера или рабочей станции.  "
+        };
+
+        listItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const topic = this.getAttribute('data-topic');
+                if (topicData.hasOwnProperty(topic)) {
+                    infoContainer.innerHTML = `<p>${topicData[topic]}</p>`;
+                    // Здесь можно добавить код для отправки этой информации на HDMI
+                    console.log(`Выбрана тема: ${topic}, информация: ${topicData[topic]}`);
+                } else {
+                    infoContainer.innerHTML = '<p>Информация для этой темы не найдена.</p>';
+                }
+            });
+        });
+
+        // Функция для отправки информации на HDMI (это зависит от платформы и возможностей)
+        function sendToHDMI(data) {
+            // Этот код будет зависеть от вашей среды и способа управления HDMI выводом.
+            // Например, это может быть частью Electron приложения, которое имеет доступ к API операционной системы.
+            console.log("Отправка на HDMI:", data);
+            // В реальном приложении здесь будет код для взаимодействия с HDMI дисплеем.
+        }
+
+        // Модифицируем обработчик клика для вызова функции отправки на HDMI
+        listItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const topic = this.getAttribute('data-topic');
+                if (topicData.hasOwnProperty(topic)) {
+                    infoContainer.innerHTML = `<p>${topicData[topic]}</p>`;
+                    sendToHDMI(topicData[topic]); // Вызываем функцию отправки
+                } else {
+                    infoContainer.innerHTML = '<p>Информация для этой темы не найдена.</p>';
+                }
+            });
+        });
+    </script>
+        <h2>Монитор</h2>
+        <div style="border-left: 5px solid #e74c3c; padding-left: 10px;">
+            Монитор — это электронное устройство, предназначенное для отображения визуальной информации, такой как текст, изображения и видео, генерируемой компьютером или другими устройствами. По сути, это визуальный интерфейс, который позволяет пользователям взаимодействовать с компьютерными системами.
+Существует несколько основных типов мониторов, различающихся по технологии изготовления экрана:</p>
+       
+</div>
+        <ol>
+            <li>ЭЛТ (электронно-лучевая трубка): Это устаревший тип мониторов, который использовал электронно-лучевую трубку для формирования изображения. Они были громоздкими и потребляли много энергии.</li>
+            <li>Плазменные мониторы: В этих мониторах используются крошечные ячейки, содержащие инертные газы. При подаче электрического напряжения газ ионизируется, излучая ультрафиолетовый свет, который, в свою очередь, заставляет люминофор светиться красным, зеленым или синим цветом, формируя изображение. Плазменные мониторы обеспечивают хорошую цветопередачу и углы обзора, но потребляют много энергии и могут быть подвержены выгоранию экрана.</li>  
+        </ol>
+    <h2>Клавиатура</h2>
+    <div style="border-left: 5px solid #e74c3c; padding-left: 10px;">
+  Клавиатура — это устройство ввода, которое позволяет пользователю вводить буквы, цифры, символы и другие команды в компьютер или другое электронное устройство. Обычно она состоит из набора клавиш, расположенных в определенном порядке.
+</div>
+    <ol>
+        <li>Механические клавиатуры: В этих клавиатурах используются отдельные механические переключатели под каждой клавишей, что обеспечивает тактильную обратную связь и долговечность. Они часто предпочитаются геймерами и теми, кто много печатает.</li>
+        <li>Мембранные клавиатуры: В этих клавиатурах используется гибкая мембранная панель для регистрации нажатий клавиш. Они обычно тише и дешевле механических клавиатур, но могут не обеспечивать такого же уровня тактильной обратной связи.</li>
+    </ol>
+    <h2>Мышка</h2>
+    <div style="border-left: 5px solid #e74c3c; padding-left: 10px;">
+  Компьютерная мышь - это ручное указывающее устройство, которое обнаруживает двумерное движение относительно поверхности. Это движение обычно преобразуется в движение указателя (называемого курсором) на дисплее, что обеспечивает плавное управление графическим интерфейсом пользователя компьютера.
+</div>
+    <ol>
+        <li>Указания и выбора: Перемещения курсора на нужный объект (иконку, кнопку, ссылку) на экране</li>
+        <li> Клика: Быстрого нажатия кнопки для выбора объекта, открытия программы или выполнения действия. </li>  
+        <li> Двойного клика: Двух быстрых нажатий кнопки для открытия файлов или запуска программ. </li>
+        <li> Перетаскивания: Нажатия и удержания кнопки при перемещении мыши для перемещения объектов на экране. </li>
+    </ol>
+    <h2>Блок-система</h2>
+    <div style="border-left: 5px solid #e74c3c; padding-left: 10px;">
+  Блок-система — это термин, который может иметь несколько значений в зависимости от контекста. Вот некоторые из наиболее распространенных значений:
+</div>
+    <ol>
+        <li> Блок-схема:
+  Это графическое представление алгоритма, процесса или системы, в котором отдельные шаги или компоненты изображаются в виде блоков различной формы, соединенных линиями, указывающими последовательность действий или взаимосвязи. </li>
+        <li> Блок-схемы используются для наглядного представления сложных процессов, облегчения их понимания, анализа и разработки. </li>
+        <li> В контексте информационных технологий, особенно криптовалют, блокчейн представляет собой распределенную, децентрализованную базу данных, состоящую из последовательно связанных блоков информации (транзакций). </li>
+        <li>  Каждый блок содержит определенное количество проверенных транзакций, а также криптографическую связь с предыдущим блоком, что обеспечивает целостность и неизменяемость данных. </li>
+    </ol>
+
+</div>
+
+    <script>
+        function toggleNav(button) {
+            const nav = document.getElementById("slideNav");
+            button.classList.toggle("open");
+            nav.style.width = button.classList.contains("open") ? "250px" : "0";
+        }
+    </script>
+
+</body>
+</body>
+</html>
